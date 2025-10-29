@@ -30,7 +30,7 @@ public class StringCalculator {
                      .sum();
     }
 	*/
-	public static int add(String numbers) {
+	/*public static int add(String numbers) {
         if (numbers == null || numbers.isEmpty()) return 0;
 
         String[] parts = numbers.split(",");
@@ -39,5 +39,18 @@ public class StringCalculator {
                      .mapToInt(Integer::parseInt)
                      .sum();
     }
+    */
+	public static int add(String numbers) {
+	    if (numbers == null || numbers.isEmpty()) return 0;
+
+	    // Replace newline with comma so both work as delimiters
+	    String sanitized = numbers.replace("\n", ",");
+
+	    return Arrays.stream(sanitized.split(","))
+	                 .filter(s -> !s.isEmpty())
+	                 .mapToInt(Integer::parseInt)
+	                 .sum();
+	}
+
 }
 

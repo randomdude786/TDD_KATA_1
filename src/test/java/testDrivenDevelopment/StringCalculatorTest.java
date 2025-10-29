@@ -26,6 +26,6 @@ public class StringCalculatorTest {
 	public void testNewlineAsDelimiter() {
 	    assertEquals(6, StringCalculator.add("1\n2,3"));
 	}
-
+	
 
 }
