@@ -58,6 +58,10 @@ public class StringCalculatorTest {
 	public void testIgnoreNumbersGreaterThanThousand() {
 	    assertEquals(2, StringCalculator.add("2,1001"));
 	}
+	@Test
+	public void testDelimiterOfAnyLength() {
+	    assertEquals(6, StringCalculator.add("//[***]\n1***2***3"));
+	}
 
 
 
