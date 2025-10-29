@@ -1,6 +1,7 @@
 package testDrivenDevelopment;
 
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
     /*public static int add(String numbers) {
@@ -40,7 +41,7 @@ public class StringCalculator {
                      .sum();
     }
     */
-	public static int add(String numbers) {
+	/*public static int add(String numbers) {
 	    if (numbers == null || numbers.isEmpty()) return 0;
 
 	    // Replace newline with comma so both work as delimiters
@@ -51,6 +52,25 @@ public class StringCalculator {
 	                 .mapToInt(Integer::parseInt)
 	                 .sum();
 	}
+	*/
+	public static int add(String numbers) {
+	    if (numbers == null || numbers.isEmpty()) return 0;
+
+	    String delimiter = ",";
+	    if (numbers.startsWith("//")) {
+	        int newlineIndex = numbers.indexOf("\n");
+	        delimiter = numbers.substring(2, newlineIndex);
+	        numbers = numbers.substring(newlineIndex + 1);
+	    }
+
+	    String[] tokens = numbers.replace("\n", delimiter).split(Pattern.quote(delimiter));
+
+	    return Arrays.stream(tokens)
+	                 .filter(s -> !s.isEmpty())
+	                 .mapToInt(Integer::parseInt)
+	                 .sum();
+	}
+
 
 }
 
