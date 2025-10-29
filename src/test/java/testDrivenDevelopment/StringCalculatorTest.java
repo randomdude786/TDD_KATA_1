@@ -18,6 +18,10 @@ public class StringCalculatorTest {
 	public void testTwoNumbersReturnsSum() {
 	    assertEquals(3, StringCalculator.add("1,2"));
 	}
+	@Test
+	public void testUnknownAmountOfNumbers() {
+	    assertEquals(10, StringCalculator.add("1,2,3,4"));
+	}
 
 
 }
