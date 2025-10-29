@@ -75,6 +75,15 @@ public class StringCalculatorTest {
 	public void testMultipleDelimitersWithNewlines() {
 	    assertEquals(10, StringCalculator.add("//[*][%]\n1*2\n3%4"));
 	}
+	@Test
+	public void testGetCalledCountTracksInvocations() {
+	    int before = StringCalculator.getCalledCount();
+
+	    StringCalculator.add("1,2");
+	    StringCalculator.add("1,2,3");
+
+	    assertEquals(before + 2, StringCalculator.getCalledCount());
+	}
 
 
 
