@@ -1,5 +1,7 @@
 package testDrivenDevelopment;
 
+import java.util.Arrays;
+
 public class StringCalculator {
     /*public static int add(String numbers) {
         return 0; 
@@ -10,7 +12,7 @@ public class StringCalculator {
         return Integer.parseInt(numbers);
     }
     */
-	public static int add(String numbers) {
+	/*public static int add(String numbers) {
 	    if (numbers.isEmpty()) return 0;
 	    String[] parts = numbers.split(",");
 	    int sum = 0;
@@ -19,6 +21,14 @@ public class StringCalculator {
 	    }
 	    return sum;
 	}
+	*/
+	public static int add(String numbers) {
+        if (numbers.isEmpty()) return 0;
+
+        return Arrays.stream(numbers.split(","))
+                     .mapToInt(Integer::parseInt)
+                     .sum();
+    }
 
 }
 
