@@ -82,17 +82,22 @@ public class StringCalculator {
 	    int newlineIndex = input.indexOf("\n");
 	    String header = input.substring(2, newlineIndex);
 
+	    // Find all bracketed delimiters: [*], [%], [###], etc.
 	    Matcher matcher = Pattern.compile("\\[(.+?)\\]").matcher(header);
 	    List<String> delimiters = new ArrayList<>();
 	    while (matcher.find()) {
 	        delimiters.add(Pattern.quote(matcher.group(1)));
 	    }
+
+	    // Fallback to single delimiter if no brackets found
 	    if (delimiters.isEmpty()) {
 	        delimiters.add(Pattern.quote(header));
 	    }
 
+	    // Build combined regex for all delimiters, plus newline
 	    return String.join("|", delimiters) + "|\n";
 	}
+
 
 
 
