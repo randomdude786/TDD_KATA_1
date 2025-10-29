@@ -3,8 +3,11 @@ package testDrivenDevelopment;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+
 
 public class StringCalculator {
     /*public static int add(String numbers) {
@@ -75,10 +78,23 @@ public class StringCalculator {
 	}*/
 	private static String extractDelimiter(String input) {
 	    if (!input.startsWith("//")) return ",|\n";
+
 	    int newlineIndex = input.indexOf("\n");
-	    String custom = Pattern.quote(input.substring(2, newlineIndex));
-	    return custom + "|\n"; // allow newlines too
+	    String header = input.substring(2, newlineIndex);
+
+	    Matcher matcher = Pattern.compile("\\[(.+?)\\]").matcher(header);
+	    List<String> delimiters = new ArrayList<>();
+	    while (matcher.find()) {
+	        delimiters.add(Pattern.quote(matcher.group(1)));
+	    }
+	    if (delimiters.isEmpty()) {
+	        delimiters.add(Pattern.quote(header));
+	    }
+
+	    return String.join("|", delimiters) + "|\n";
 	}
+
+
 
 
 	private static String extractBody(String input) {
