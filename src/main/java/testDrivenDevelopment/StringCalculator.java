@@ -22,13 +22,22 @@ public class StringCalculator {
 	    return sum;
 	}
 	*/
-	public static int add(String numbers) {
+	/*public static int add(String numbers) {
         if (numbers.isEmpty()) return 0;
 
         return Arrays.stream(numbers.split(","))
                      .mapToInt(Integer::parseInt)
                      .sum();
     }
+	*/
+	public static int add(String numbers) {
+        if (numbers == null || numbers.isEmpty()) return 0;
 
+        String[] parts = numbers.split(",");
+        return Arrays.stream(parts) 
+                     .filter(s -> !s.isEmpty()) //added filter for empty input
+                     .mapToInt(Integer::parseInt)
+                     .sum();
+    }
 }
 
