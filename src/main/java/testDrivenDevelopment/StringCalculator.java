@@ -10,6 +10,12 @@ import java.util.stream.Collectors;
 
 
 public class StringCalculator {
+	private static int callCount = 0;
+
+	public static int getCalledCount() {
+	    return callCount;
+	}
+
     /*public static int add(String numbers) {
         return 0; 
     }
@@ -105,6 +111,7 @@ public class StringCalculator {
 	}
 
 	public static int add(String numbers) {
+		callCount++;
 	    if (numbers == null || numbers.isEmpty()) return 0;
 
 	    String delimiterRegex = extractDelimiter(numbers);
