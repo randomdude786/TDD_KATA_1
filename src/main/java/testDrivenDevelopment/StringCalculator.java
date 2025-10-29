@@ -112,7 +112,12 @@ public class StringCalculator {
 	    }
 
 
-	    return sum;
+	    return Arrays.stream(tokens)
+	            .filter(s -> !s.isEmpty())
+	            .mapToInt(Integer::parseInt)
+	            .filter(n -> n <= 1000)        // ✅ ignore > 1000
+	            .sum();
+
 	}
 
 
