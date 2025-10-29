@@ -1,8 +1,12 @@
 package testDrivenDevelopment;
 
-import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+
 
 public class StringCalculatorTest {
 
@@ -43,6 +47,12 @@ public class StringCalculatorTest {
 	@Test
 	public void testCustomDelimiterWithNewline() {
 	    assertEquals(10, StringCalculator.add("//;\n1;2\n3;4"));
+	}
+	@Test
+	public void testNegativeNumberThrowsException() {
+	    Exception ex = assertThrows(IllegalArgumentException.class, 
+	        () -> StringCalculator.add("1,-2,3"));
+	    assertEquals("Negatives not allowed: -2", ex.getMessage());
 	}
 
 
